@@ -1,3 +1,31 @@
 A bunch of scripts meant to be used with QuickSilver for automating common actions
 The idea as far as possible is to minimize software needed beyond what comes with a standard mac install
 But that said I've chosen now to depend on growl and on the rb-appscript gem
+
+TinyUrilise from Opera, meant to be invoked directly. Install by copying it to ~/Library/Scripts.
+Takes the current active tab in opera and converts it to a tinyurl which is uploaded into your clipboard so you can
+subsequently paste it to irc or twitter.
+
+Tiny Screenshot, meant to be invoked directly. Install by copying it to ~/Library/Scripts. When launched it lets you adjust
+the boundaries of a screenshot. Once done it uploads this screenshot to an image site and puts the url in your clipboard. 
+It expects growlnotify (which is an addon with growl), to be installed so it can notify you when it's done.
+
+MoonPatio is a ruby script meant to be installed as an action. This script depends on ruby being installed. 
+To Install 
+copy it to ~/Library/Application\ Support/Quicksilver/Actions/
+gem install rb-appscript
+additionally copy the folder 32bit to where ever the rb-appscript gem gets installed. So if
+it gets installed under
+/Library/Ruby/Gems/1.8/gems/rb-appscript-0.5.3 , then copy 32bit to
+/Library/Ruby/Gems/1.8/gems/rb-appscript-0.5.3/lib/
+To test it, just invoke it from the command line as 
+"MoonPatio.rb ruby". If it succeeds, it should place a url into your clipboard.
+
+To use this script, select some code or text. launch quicksilver, on the first tab hit period followed by some abbreviation
+to declare what language the code is in (the full list supported is here http://moonpatio.org/), hit tab and select MoonPatio.
+It should upload the code and drop the url into your clipboard. If it cannot figure out what language you meant, it should throw up
+a dialog to disambiguate.
+
+All these scripts depend upon a bash script ~/.bash_setproxy which I have that sets the http_proxy environment variable when Im behind a http proxy. If you don't have this file, the scripts should still work though. If you ARE behind a proxy, that's a common hook you can use to set the http_proxy variable.
+
+ 
