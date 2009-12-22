@@ -1,0 +1,3 @@
+A bunch of scripts meant to be used with QuickSilver for automating common actions
+The idea as far as possible is to minimize software needed beyond what comes with a standard mac install
+But that said I've chosen now to depend on growl and on the rb-appscript gem
