@@ -1,11 +1,8 @@
-#!/opt/local/bin/ruby1.9
-#!/usr/bin/ruby
-require 'rubygems'
-require 'osax'
-require '32bit/standard_additions'
+#!/usr/bin/arch -i386 /usr/bin/ruby
 require 'cgi'
-require 'net/http'
+require '~/Library/Scripts/scripting_common'
 
+include ScriptingCommon
 # this class figures out what language the code is in. First by using the clue you've typed in
 # and if that doesn't work, by throwing up a dialog.
 class Language
@@ -42,14 +39,6 @@ class Language
 	end	
 end	
 
-def get_http  
-	uri = URI.parse(`source ~/.bash_setproxy;echo $http_proxy`)
-	proxy_user, proxy_pass = uri.userinfo.split(/:/) if uri.userinfo
-	Net::HTTP::Proxy(uri.host,uri.port,proxy_user,proxy_pass)
-end	
-
-osax = OSAX::ScriptingAddition.new('osax', StandardAdditions)		
-http = get_http
 languages = Hash[*http.get(URI.parse('http://moonpatio.org/fastcgi/hpaste.fcgi/new')).scan(/<option [^>]*value=\"([^\"]*)\">([^>]*)</).collect(&:reverse).flatten]
 chosen = Language.new(languages.keys, osax).get_language ARGV[0].upcase
 exit unless chosen
