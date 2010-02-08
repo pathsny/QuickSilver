@@ -1,5 +1,5 @@
 #!/usr/bin/arch -i386 /usr/bin/ruby
-require 'scripting_common'
+require File.dirname(__FILE__) + '/scripting_common'
 include ScriptingCommon
 
 `screencapture -i /tmp/foo.png`
